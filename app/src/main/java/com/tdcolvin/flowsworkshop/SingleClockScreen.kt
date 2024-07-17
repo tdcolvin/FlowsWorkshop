@@ -20,7 +20,8 @@ fun SingleClockScreen(
     modifier: Modifier = Modifier,
     viewModel: SingleClockViewModel = viewModel()
 ) {
-    val dateString by viewModel.serverTime.collectAsStateWithLifecycle("")
+    //TODO: collect this dateString in a lifecycle-safe manner from viewModel.serverTime
+    val dateString = "???"
 
     Column(modifier = modifier) {
         Text("Date and time", style = MaterialTheme.typography.labelMedium)

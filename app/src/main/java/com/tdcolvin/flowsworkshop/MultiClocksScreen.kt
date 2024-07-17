@@ -21,6 +21,9 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.shareIn
 import java.util.Locale
 
+//TODO: The flow is being started 6 times, causing 6x traffic to the server.
+//      Fix this issue.
+
 @Composable
 fun MultiClocksScreen(
     modifier: Modifier = Modifier,
@@ -63,7 +66,7 @@ class ClocksViewModel: ViewModel() {
             emit(serverTimeDataSource.getLatestTimeFromServer())
             delay(1000)
         }
-    }.shareIn(viewModelScope, SharingStarted.Lazily)
+    }
 
     val year = serverTime.map { SimpleDateFormat("yyyy", Locale.getDefault()).format(it) }
     val month = serverTime.map { SimpleDateFormat("MMMM", Locale.getDefault()).format(it) }

@@ -39,9 +39,7 @@ fun FlowCreationScreen(
         Row {
             Button(onClick = {
                 scope.launch {
-                    partyGuestsFlow.collect {
-                        flowEmissions += "\n" + it
-                    }
+                    //TODO: start collecting the flow here
                 }
             }) {
                 Text("Start Collecting")
@@ -65,20 +63,22 @@ fun FlowCreationScreen(
     }
 }
 
-val myFlow = flow {
-    emit(1)
-    delay(500)
-    emit(2)
-}
+//TODO: Create a flow to collect, maybe something like:
+//val myFlow = flow {
+//    emit(1)
+//    delay(500)
+//    emit(2)
+//}
 
+//TODO: Collect this flow in the UI.
+//      Filter out any party guest under 18
+//      Return only the first initial of the guest.
 val partyGuestsFlow = flow {
     for(guest in guests) {
         emit(guest)
         delay(200)
     }
 }
-    .filter { it.age >= 18 }
-    .map { it.name.substring(0, 1) }
 
 
 data class PartyGuest(val name: String, val age: Int)
