@@ -21,7 +21,9 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.cancelChildren
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 import kotlin.coroutines.cancellation.CancellationException
 
@@ -37,7 +39,7 @@ fun FlowCreationScreen(
         Row {
             Button(onClick = {
                 scope.launch {
-                    myFlow.collect {
+                    partyGuestsFlow.collect {
                         flowEmissions += "\n" + it
                     }
                 }
@@ -75,6 +77,9 @@ val partyGuestsFlow = flow {
         delay(200)
     }
 }
+    .filter { it.age >= 18 }
+    .map { it.name.substring(0, 1) }
+
 
 data class PartyGuest(val name: String, val age: Int)
 
@@ -95,6 +100,7 @@ val guests = listOf(
     PartyGuest("Noah", 28),
     PartyGuest("Oli", 19),
     PartyGuest("Parker", 54),
+    PartyGuest("Quillam", 108),
     PartyGuest("Rice", 20),
     PartyGuest("Sophia", 49),
     PartyGuest("Theo", 72),
