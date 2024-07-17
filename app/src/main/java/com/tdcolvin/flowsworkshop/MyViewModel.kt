@@ -4,12 +4,15 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.tdcolvin.flowsworkshop.datasource.ServerTimeDataSource
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.shareIn
 
 class MyViewModel: ViewModel() {
     private val serverTimeDataSource = ServerTimeDataSource()
+
+    val stateFlow = MutableStateFlow("V")
 
     val serverTime = flow {
         while (true) {

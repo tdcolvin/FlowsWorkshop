@@ -6,9 +6,8 @@ import java.text.DateFormat
 import java.util.Date
 
 class ServerTimeDataSource {
-    suspend fun getLatestTimeFromServer(): String {
+    suspend fun getLatestTimeFromServer(): Date {
         Log.v("timeserver", "Getting time from time server...")
-        delay(500)
-        return DateFormat.getDateTimeInstance().format(Date())
+        return Date()
     }
 }
