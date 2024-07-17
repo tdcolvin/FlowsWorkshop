@@ -26,6 +26,9 @@ class MainActivity : ComponentActivity() {
 
                     // Uncomment this, and comment out the above, for the third hands-on
                     //MultiClocksScreen(modifier = Modifier.padding(innerPadding))
+
+                    // This is to demo MutableStateFlow
+                    //UIStateFlowScreen(modifier = Modifier.padding(innerPadding))
                 }
             }
         }
